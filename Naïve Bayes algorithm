@@ -1,0 +1,63 @@
+Aim
+
+To implement the Naïve Bayes algorithm for classifying data based on probability theory.
+
+Algorithm
+
+Collect the training dataset with features and class labels.
+
+Convert categorical data into numerical form.
+
+Apply the Naïve Bayes classifier on the training data.
+
+Calculate prior and conditional probabilities internally.
+
+Predict the class label for a new test sample.
+
+Python Code
+# Naïve Bayes Algorithm Implementation
+
+from sklearn.naive_bayes import GaussianNB
+from sklearn.preprocessing import LabelEncoder
+
+# Training data
+outlook = ['Sunny', 'Sunny', 'Overcast', 'Rainy', 'Rainy']
+temperature = ['Hot', 'Hot', 'Hot', 'Mild', 'Cool']
+play = ['No', 'No', 'Yes', 'Yes', 'Yes']
+
+# Encode categorical data
+le_outlook = LabelEncoder()
+le_temp = LabelEncoder()
+le_play = LabelEncoder()
+
+outlook_encoded = le_outlook.fit_transform(outlook)
+temp_encoded = le_temp.fit_transform(temperature)
+play_encoded = le_play.fit_transform(play)
+
+# Combine features
+X = list(zip(outlook_encoded, temp_encoded))
+Y = play_encoded
+
+# Create Naive Bayes model
+model = GaussianNB()
+
+# Train the model
+model.fit(X, Y)
+
+# Test data
+test_data = [[le_outlook.transform(['Sunny'])[0],
+              le_temp.transform(['Cool'])[0]]]
+
+# Predict output
+prediction = model.predict(test_data)
+
+print("Test Data: Sunny, Cool")
+print("Predicted Class:", le_play.inverse_transform(prediction))
+
+Output
+Test Data: Sunny, Cool
+Predicted Class: ['Yes']
+
+Result
+
+Thus, the Naïve Bayes algorithm was successfully implemented and used to classify the given test sample.
