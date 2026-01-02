@@ -1,0 +1,76 @@
+Aim
+
+To implement Principal Component Analysis (PCA) for dimensionality reduction and visualize the transformed data.
+
+Algorithm
+
+Collect the dataset with multiple features.
+
+Standardize the dataset to have zero mean and unit variance.
+
+Compute the covariance matrix.
+
+Calculate eigenvalues and eigenvectors (handled internally).
+
+Select principal components with maximum variance.
+
+Transform the dataset into lower dimensions.
+
+Plot the reduced data.
+
+Python Code
+# Principal Component Analysis (PCA) Implementation
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+# Sample dataset (2 features)
+X = np.array([
+    [2.5, 2.4],
+    [0.5, 0.7],
+    [2.2, 2.9],
+    [1.9, 2.2],
+    [3.1, 3.0],
+    [2.3, 2.7],
+    [2.0, 1.6],
+    [1.0, 1.1],
+    [1.5, 1.6],
+    [1.1, 0.9]
+])
+
+# Standardize the data
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Apply PCA (reduce to 1 component)
+pca = PCA(n_components=1)
+X_pca = pca.fit_transform(X_scaled)
+
+print("Original Shape:", X.shape)
+print("Reduced Shape:", X_pca.shape)
+
+# Plot original data
+plt.scatter(X[:, 0], X[:, 1])
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.title("Original Data")
+plt.show()
+
+# Plot reduced data
+plt.scatter(X_pca, np.zeros_like(X_pca))
+plt.xlabel("Principal Component 1")
+plt.title("Data after PCA")
+plt.show()
+
+Output
+Original Shape: (10, 2)
+Reduced Shape: (10, 1)
+
+
+(Graphs show original 2D data and reduced 1D PCA projection)
+
+Result
+
+Thus, Principal Component Analysis was successfully implemented and the dataset was reduced from two dimensions to one while retaining maximum variance.
