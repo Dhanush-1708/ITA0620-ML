@@ -1,0 +1,60 @@
+Aim
+
+To implement the K-Nearest Neighbour (KNN) algorithm and classify a new data point based on the nearest neighbors.
+
+Algorithm
+
+Read the training dataset with features and class labels.
+
+Choose the value of K (number of neighbors).
+
+Calculate the distance between test data and all training samples.
+
+Sort distances in ascending order.
+
+Select the first K nearest neighbors.
+
+Assign the class based on majority voting.
+
+Python Code
+# K-Nearest Neighbour Algorithm
+
+from sklearn.neighbors import KNeighborsClassifier
+import numpy as np
+
+# Training data (feature and label)
+X_train = [
+    [2, 4],
+    [4, 6],
+    [4, 4],
+    [6, 4],
+    [6, 6]
+]
+
+Y_train = ['A', 'A', 'B', 'B', 'B']
+
+# Convert data to NumPy array
+X_train = np.array(X_train)
+
+# Create KNN classifier
+knn = KNeighborsClassifier(n_neighbors=3)
+
+# Train the model
+knn.fit(X_train, Y_train)
+
+# Test data
+X_test = [[5, 5]]
+
+# Predict class
+prediction = knn.predict(X_test)
+
+print("Test Data:", X_test)
+print("Predicted Class:", prediction)
+
+Output
+Test Data: [[5, 5]]
+Predicted Class: ['B']
+
+Result
+
+Thus, the K-Nearest Neighbour algorithm was successfully implemented and the given test data was classified correctly.
