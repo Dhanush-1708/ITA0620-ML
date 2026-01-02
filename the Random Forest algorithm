@@ -1,0 +1,64 @@
+Aim
+
+To implement the Random Forest algorithm for classification and predict the class label for a given test sample.
+
+Algorithm
+
+Collect the training dataset with input features and output labels.
+
+Convert categorical data into numerical form.
+
+Create multiple decision trees using random subsets of data.
+
+Combine the predictions of all trees using majority voting.
+
+Predict the class label for the given test data.
+
+Python Code
+# Random Forest Algorithm Implementation
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
+import numpy as np
+
+# Training data
+weather = ['Sunny', 'Sunny', 'Overcast', 'Rainy', 'Rainy', 'Sunny']
+temperature = ['Hot', 'Hot', 'Hot', 'Mild', 'Cool', 'Cool']
+play = ['No', 'No', 'Yes', 'Yes', 'Yes', 'No']
+
+# Encode categorical values
+le_weather = LabelEncoder()
+le_temp = LabelEncoder()
+le_play = LabelEncoder()
+
+weather_enc = le_weather.fit_transform(weather)
+temp_enc = le_temp.fit_transform(temperature)
+play_enc = le_play.fit_transform(play)
+
+# Combine features
+X = np.column_stack((weather_enc, temp_enc))
+Y = play_enc
+
+# Create Random Forest model
+model = RandomForestClassifier(n_estimators=10, random_state=1)
+
+# Train the model
+model.fit(X, Y)
+
+# Test sample
+test_data = [[le_weather.transform(['Rainy'])[0],
+              le_temp.transform(['Cool'])[0]]]
+
+# Predict output
+prediction = model.predict(test_data)
+
+print("Test Data: Rainy, Cool")
+print("Predicted Class:", le_play.inverse_transform(prediction))
+
+Output
+Test Data: Rainy, Cool
+Predicted Class: ['Yes']
+
+Result
+
+Thus, the Random Forest algorithm was successfully implemented and the test sample was classified correctly.
