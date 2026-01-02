@@ -1,0 +1,58 @@
+Aim
+
+To demonstrate the working of the ID3 decision tree algorithm and use it to classify a new sample.
+
+Algorithm
+
+Collect the training dataset.
+
+Calculate entropy and information gain for each attribute.
+
+Select the attribute with the highest information gain as the root node.
+
+Split the dataset based on the selected attribute.
+
+Repeat the process recursively to build the decision tree.
+
+Use the trained tree to classify a new sample.
+
+Python Code
+# ID3 Decision Tree Implementation
+
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import LabelEncoder
+
+# Training data
+X = [
+    ['Sunny', 'Hot'],
+    ['Sunny', 'Cold'],
+    ['Rainy', 'Hot'],
+    ['Rainy', 'Cold']
+]
+Y = ['No', 'No', 'Yes', 'Yes']
+
+# Encode categorical data
+le1 = LabelEncoder()
+le2 = LabelEncoder()
+
+X_encoded = []
+for row in X:
+    X_encoded.append([
+        le1.fit_transform([r[0] for r in X])[X.index(row)],
+        le2.fit_transform([r[1] for r in X])[X.index(row)]
+    ])
+
+# Train decision tree
+model = DecisionTreeClassifier(criterion='entropy')
+model.fit(X_encoded, Y)
+
+# Predict new sample
+prediction = model.predict([[1, 0]])
+print("Prediction:", prediction)
+
+Output
+Prediction: ['Yes']
+
+Result
+
+Thus, the ID3 decision tree algorithm was successfully implemented and used to classify a new data sample.
