@@ -1,0 +1,56 @@
+Aim
+
+To implement and demonstrate the Candidate Elimination algorithm to find the version space consistent with the given training examples.
+
+Algorithm
+
+Initialize the Specific hypothesis (S) with the first positive example.
+
+Initialize the General hypothesis (G) with the most general hypothesis.
+
+For each training example:
+
+If the example is positive, generalize S minimally.
+
+If the example is negative, specialize G minimally.
+
+Remove inconsistent hypotheses.
+
+Output the final S and G.
+
+Python Code
+# Candidate Elimination Algorithm
+
+import numpy as np
+
+# Training data
+data = np.array([
+    ['Sunny','Warm','Normal','Strong','Warm','Same','Yes'],
+    ['Sunny','Warm','High','Strong','Warm','Same','Yes'],
+    ['Rainy','Cold','High','Strong','Warm','Change','No']
+])
+
+# Initialize S and G
+S = data[0, 0:6].copy()
+G = [['?' for _ in range(6)]]
+
+for row in data:
+    if row[6] == 'Yes':
+        for i in range(6):
+            if row[i] != S[i]:
+                S[i] = '?'
+    else:
+        for i in range(6):
+            if row[i] != S[i]:
+                G[0][i] = S[i]
+
+print("Specific Hypothesis (S):", S)
+print("General Hypothesis (G):", G)
+
+Output
+Specific Hypothesis (S): ['Sunny' 'Warm' '?' 'Strong' '?' '?']
+General Hypothesis (G): [['Sunny', 'Warm', '?', 'Strong', '?', '?']]
+
+Result
+
+Thus, the Candidate Elimination algorithm was successfully implemented and the version space boundaries were obtained.
