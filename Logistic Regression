@@ -1,0 +1,58 @@
+Aim
+
+To implement Logistic Regression for binary classification and visualize the sigmoid curve.
+
+Algorithm
+
+Prepare a dataset with input features and binary output labels.
+
+Import required libraries.
+
+Train the Logistic Regression model using training data.
+
+Predict class labels for given inputs.
+
+Plot the sigmoid curve to visualize classification behavior.
+
+Python Code
+# Logistic Regression Implementation
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+
+# Dataset
+X = np.array([1, 2, 3, 4, 5, 6]).reshape(-1, 1)
+Y = np.array([0, 0, 0, 1, 1, 1])
+
+# Create Logistic Regression model
+model = LogisticRegression()
+
+# Train the model
+model.fit(X, Y)
+
+# Predict outputs
+Y_pred = model.predict(X)
+print("Predicted Classes:", Y_pred)
+
+# Generate values for sigmoid curve
+X_test = np.linspace(0, 7, 100).reshape(-1, 1)
+Y_prob = model.predict_proba(X_test)[:, 1]
+
+# Plot sigmoid curve
+plt.scatter(X, Y)
+plt.plot(X_test, Y_prob)
+plt.xlabel("Input")
+plt.ylabel("Probability")
+plt.title("Logistic Regression Sigmoid Curve")
+plt.show()
+
+Output
+Predicted Classes: [0 0 0 1 1 1]
+
+
+(Graph shows an S-shaped sigmoid curve)
+
+Result
+
+Thus, Logistic Regression was successfully implemented for binary classification and the sigmoid curve was plotted.
