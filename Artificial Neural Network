@@ -1,0 +1,43 @@
+To build an Artificial Neural Network by implementing the backpropagation algorithm and test it using a simple dataset.
+
+Algorithm
+
+Initialize the neural network with random weights.
+
+Provide input data and expected output.
+
+Perform forward propagation to compute output.
+
+Calculate error between actual and predicted output.
+
+Update weights using backpropagation.
+
+Repeat the process until minimum error is achieved.
+
+Python Code
+# ANN using Backpropagation
+
+from sklearn.neural_network import MLPClassifier
+
+# XOR dataset
+X = [[0,0], [0,1], [1,0], [1,1]]
+Y = [0, 1, 1, 0]
+
+# Create ANN model
+model = MLPClassifier(hidden_layer_sizes=(4,),
+                      activation='relu',
+                      max_iter=1000,
+                      random_state=1)
+
+# Train model
+model.fit(X, Y)
+
+# Test the model
+print("Predicted Output for [1,1]:", model.predict([[1,1]]))
+
+Output
+Predicted Output for [1,1]: [0]
+
+Result
+
+Thus, the Artificial Neural Network was successfully trained using the backpropagation algorithm and produced the correct output.
