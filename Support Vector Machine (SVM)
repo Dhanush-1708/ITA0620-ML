@@ -1,0 +1,63 @@
+Aim
+
+To implement the Support Vector Machine (SVM) algorithm for binary classification and classify a new data point.
+
+Algorithm
+
+Prepare the training dataset with features and class labels.
+
+Import the required libraries.
+
+Create an SVM classifier with a suitable kernel.
+
+Train the classifier using the training data.
+
+Test the model using new input data.
+
+Display the predicted class.
+
+Python Code
+# Support Vector Machine (SVM) Implementation
+
+import numpy as np
+from sklearn.svm import SVC
+
+# Training data (features)
+X_train = [
+    [1, 2],
+    [2, 3],
+    [3, 3],
+    [6, 5],
+    [7, 7],
+    [8, 6]
+]
+
+# Class labels
+Y_train = [0, 0, 0, 1, 1, 1]
+
+# Convert to NumPy array
+X_train = np.array(X_train)
+Y_train = np.array(Y_train)
+
+# Create SVM model
+model = SVC(kernel='linear')
+
+# Train the model
+model.fit(X_train, Y_train)
+
+# Test data
+X_test = [[5, 4]]
+
+# Predict class
+prediction = model.predict(X_test)
+
+print("Test Data:", X_test)
+print("Predicted Class:", prediction)
+
+Output
+Test Data: [[5, 4]]
+Predicted Class: [1]
+
+Result
+
+Thus, the Support Vector Machine algorithm was successfully implemented and the given test data was classified correctly.
