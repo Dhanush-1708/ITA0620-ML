@@ -1,0 +1,51 @@
+Aim
+
+To implement Hierarchical Clustering and visualize the clustering process using a dendrogram.
+
+Algorithm
+
+Collect the dataset.
+
+Compute distance between data points.
+
+Merge the closest clusters step by step.
+
+Continue merging until all points form a single cluster.
+
+Plot the dendrogram to visualize hierarchy.
+
+Python Code
+# Hierarchical Clustering Implementation
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+# Dataset
+X = np.array([
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [5, 6],
+    [6, 7],
+    [7, 8]
+])
+
+# Perform hierarchical clustering
+linked = linkage(X, method='ward')
+
+# Plot dendrogram
+plt.figure()
+dendrogram(linked)
+plt.xlabel("Data Points")
+plt.ylabel("Distance")
+plt.title("Hierarchical Clustering Dendrogram")
+plt.show()
+
+Output
+
+A dendrogram graph showing hierarchical merging of data points.
+
+Result
+
+Thus, Hierarchical Clustering was successfully implemented and the relationships between data points were visualized using a dendrogram.
