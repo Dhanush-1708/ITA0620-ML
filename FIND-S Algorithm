@@ -1,0 +1,52 @@
+Aim
+
+To implement and demonstrate the FIND-S algorithm for finding the most specific hypothesis based on a given set of training data samples.
+
+Algorithm
+
+Initialize the hypothesis with the first positive training example.
+
+For each training example in the dataset:
+
+If the example is positive, compare it with the hypothesis.
+
+Replace differing attribute values with ?.
+
+Ignore negative examples.
+
+The final hypothesis obtained is the most specific hypothesis.
+
+Python Code
+# FIND-S Algorithm Implementation
+
+import pandas as pd
+
+# Training data
+data = pd.DataFrame([
+    ['Sunny','Warm','Normal','Strong','Warm','Same','Yes'],
+    ['Sunny','Warm','High','Strong','Warm','Same','Yes'],
+    ['Rainy','Cold','High','Strong','Warm','Change','No'],
+    ['Sunny','Warm','High','Strong','Cool','Change','Yes']
+])
+
+# Initialize hypothesis
+hypothesis = ['0'] * 6
+
+# Apply FIND-S algorithm
+for i in range(len(data)):
+    if data.iloc[i, 6] == 'Yes':
+        if hypothesis == ['0'] * 6:
+            hypothesis = list(data.iloc[i, 0:6])
+        else:
+            for j in range(6):
+                if hypothesis[j] != data.iloc[i, j]:
+                    hypothesis[j] = '?'
+
+print("Final Hypothesis:", hypothesis)
+
+Output
+Final Hypothesis: ['Sunny', 'Warm', '?', 'Strong', '?', '?']
+
+Result
+
+Thus, the FIND-S algorithm was successfully implemented and the most specific hypothesis was obtained from the given training data.
