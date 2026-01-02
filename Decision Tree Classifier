@@ -1,0 +1,66 @@
+Aim
+
+To implement the Decision Tree Classifier using the CART algorithm and classify a given test sample.
+
+Algorithm
+
+Collect the training dataset with input features and output labels.
+
+Convert categorical data into numerical form (if required).
+
+Create a Decision Tree classifier using the Gini index (CART).
+
+Train the classifier using the training data.
+
+Test the model using a new input sample.
+
+Display the predicted output.
+
+Python Code
+# Decision Tree Classifier using CART Algorithm
+
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import LabelEncoder
+import numpy as np
+
+# Training data
+outlook = ['Sunny', 'Sunny', 'Overcast', 'Rainy', 'Rainy', 'Sunny']
+temperature = ['Hot', 'Hot', 'Hot', 'Mild', 'Cool', 'Cool']
+play = ['No', 'No', 'Yes', 'Yes', 'Yes', 'No']
+
+# Encode categorical data
+le_outlook = LabelEncoder()
+le_temp = LabelEncoder()
+le_play = LabelEncoder()
+
+outlook_encoded = le_outlook.fit_transform(outlook)
+temp_encoded = le_temp.fit_transform(temperature)
+play_encoded = le_play.fit_transform(play)
+
+# Combine features
+X = np.column_stack((outlook_encoded, temp_encoded))
+Y = play_encoded
+
+# Create Decision Tree model (CART uses Gini index)
+model = DecisionTreeClassifier(criterion='gini')
+
+# Train the model
+model.fit(X, Y)
+
+# Test data
+test_sample = [[le_outlook.transform(['Rainy'])[0],
+                le_temp.transform(['Cool'])[0]]]
+
+# Predict output
+prediction = model.predict(test_sample)
+
+print("Test Sample: Rainy, Cool")
+print("Predicted Class:", le_play.inverse_transform(prediction))
+
+Output
+Test Sample: Rainy, Cool
+Predicted Class: ['Yes']
+
+Result
+
+Thus, the Decision Tree Classifier using the CART algorithm was successfully implemented and the test sample was classified correctly.
