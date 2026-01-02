@@ -1,0 +1,68 @@
+Aim
+
+To implement the K-Means clustering algorithm and group data points into clusters based on similarity.
+
+Algorithm
+
+Choose the number of clusters K.
+
+Initialize K centroids randomly.
+
+Assign each data point to the nearest centroid using distance measure.
+
+Recalculate centroids as the mean of assigned points.
+
+Repeat steps 3 and 4 until centroids do not change.
+
+Display the clustered data using a graph.
+
+Python Code
+# K-Means Clustering Implementation
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Create dataset
+X = np.array([
+    [1, 2],
+    [1, 4],
+    [1, 0],
+    [4, 2],
+    [4, 4],
+    [4, 0]
+])
+
+# Create K-Means model
+kmeans = KMeans(n_clusters=2, random_state=0)
+
+# Train model
+kmeans.fit(X)
+
+# Get cluster labels and centroids
+labels = kmeans.labels_
+centroids = kmeans.cluster_centers_
+
+print("Cluster Labels:", labels)
+print("Centroids:\n", centroids)
+
+# Plot clusters
+plt.scatter(X[:, 0], X[:, 1], c=labels)
+plt.scatter(centroids[:, 0], centroids[:, 1], marker='X')
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("K-Means Clustering")
+plt.show()
+
+Output
+Cluster Labels: [1 1 1 0 0 0]
+Centroids:
+ [[4. 2.]
+  [1. 2.]]
+
+
+(Graph shows two clearly separated clusters with centroids)
+
+Result
+
+Thus, the K-Means clustering algorithm was successfully implemented and the data points were grouped into two clusters.
